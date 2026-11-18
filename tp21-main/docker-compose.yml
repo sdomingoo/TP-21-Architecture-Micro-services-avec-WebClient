@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  mysqldb-client:
+    image: mysql:8.0
+    container_name: mysql-client-service
+    restart: always
+    environment:
+      MYSQL_DATABASE: clientservicedb
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data_client:/var/lib/mysql
+
+  mysqldb-voiture:
+    image: mysql:8.0
+    container_name: mysql-voiture-service
+    restart: always
+    environment:
+      MYSQL_DATABASE: carservicedb
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data_voiture:/var/lib/mysql
+
+volumes:
+  mysql_data_client:
+  mysql_data_voiture:
